@@ -52,6 +52,9 @@ func _on_decay_timer_timeout() -> void:
 func _on_mouse_entered() -> void:
 	animation.play("damage")
 	particles.emitting = true
-	hp -= 1
+	if animation.animation_finished:
+		hp -= 1
 	if hp <= 0:
-		queue_free()
+		animation.play("succumb")
+		if not animation.animation_finished:
+			queue_free()
