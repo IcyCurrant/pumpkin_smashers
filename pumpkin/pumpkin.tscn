@@ -1,0 +1,86 @@
+[gd_scene format=3 uid="uid://dpv3hibe7n1ou"]
+
+[ext_resource type="Script" uid="uid://bju5vdl0ti52" path="res://pumpkin/pumpkin.gd" id="1_34jbq"]
+[ext_resource type="Resource" uid="uid://bilw5wwe6laer" path="res://pumpkin/types_/pumpkin_test.tres" id="2_un07p"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_un07p"]
+
+[sub_resource type="Animation" id="Animation_un07p"]
+length = 0.25
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("sprite:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.125, 0.25),
+"transitions": PackedFloat32Array(1, 4, 4),
+"update": 0,
+"values": [Vector2(2, 2), Vector2(2.5, 2.5), Vector2(2, 2)]
+}
+
+[sub_resource type="Animation" id="Animation_nixuc"]
+resource_name = "damage"
+length = 0.25
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("sprite:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.125, 0.25),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(3, 3), Vector2(2.5, 2.5), Vector2(2, 2)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_c7420"]
+_data = {
+&"RESET": SubResource("Animation_un07p"),
+&"damage": SubResource("Animation_nixuc")
+}
+
+[node name="pumpkin" type="Area2D" unique_id=103314586]
+script = ExtResource("1_34jbq")
+pumpkinManager = ExtResource("2_un07p")
+
+[node name="sprite" type="Sprite2D" parent="." unique_id=2089793775]
+scale = Vector2(2, 2)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1543393040]
+shape = SubResource("RectangleShape2D_un07p")
+
+[node name="decay_timer" type="Timer" parent="." unique_id=407569210]
+one_shot = true
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=463774934]
+libraries/ = SubResource("AnimationLibrary_c7420")
+
+[node name="Label" type="Label" parent="." unique_id=893716921]
+offset_left = -20.0
+offset_top = -32.0
+offset_right = 20.0
+offset_bottom = -9.0
+text = "HP: 5"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="CPUParticles2D" type="CPUParticles2D" parent="." unique_id=344285352]
+emitting = false
+lifetime = 0.5
+one_shot = true
+explosiveness = 1.0
+emission_shape = 1
+emission_sphere_radius = 32.0
+direction = Vector2(0, -10)
+spread = 180.0
+initial_velocity_min = 100.0
+initial_velocity_max = 100.0
+scale_amount_min = 10.0
+scale_amount_max = 10.0
+color = Color(0.90196615, 0.41336712, 0.17578706, 1)
+
+[connection signal="mouse_entered" from="." to="." method="_on_mouse_entered"]
+[connection signal="timeout" from="decay_timer" to="." method="_on_decay_timer_timeout"]

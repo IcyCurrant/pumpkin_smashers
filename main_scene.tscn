@@ -1,0 +1,16 @@
+[gd_scene format=3 uid="uid://cgy16vp51t8i"]
+
+[ext_resource type="Script" uid="uid://hqtvrpemlrv0" path="res://spawner.gd" id="1_0f027"]
+
+[node name="main_scene" type="Node2D" unique_id=1754349015]
+
+[node name="Camera2D" type="Camera2D" parent="." unique_id=348257462]
+
+[node name="spawner" type="Node2D" parent="." unique_id=2012858056]
+script = ExtResource("1_0f027")
+
+[node name="Timer" type="Timer" parent="spawner" unique_id=524585312]
+autostart = true
+ignore_time_scale = true
+
+[connection signal="timeout" from="spawner/Timer" to="spawner" method="_on_timer_timeout"]

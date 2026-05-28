@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="PumpkinManager" format=3 uid="uid://bilw5wwe6laer"]
+
+[ext_resource type="Script" uid="uid://c2adi7042f5so" path="res://pumpkin/pumpkinManager.gd" id="1_38c4y"]
+[ext_resource type="Texture2D" uid="uid://cvrwd2v8ke3xp" path="res://assets/pumpkin_.png" id="2_x2mqw"]
+
+[resource]
+script = ExtResource("1_38c4y")
+texture = ExtResource("2_x2mqw")
+hp = 5
+decay_time = 5.0
+metadata/_custom_type_script = "uid://c2adi7042f5so"
