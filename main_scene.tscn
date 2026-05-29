@@ -2,7 +2,6 @@
 
 [ext_resource type="Script" uid="uid://hqtvrpemlrv0" path="res://spawner.gd" id="1_0f027"]
 [ext_resource type="PackedScene" uid="uid://cs7kw4um2ursr" path="res://player/player.tscn" id="2_2c62f"]
-[ext_resource type="PackedScene" uid="uid://ewgge3sx1riw" path="res://addons/uip_joystick/joystick.tscn" id="3_gyfs4"]
 
 [node name="main_scene" type="Node2D" unique_id=1754349015]
 
@@ -16,14 +15,5 @@ autostart = true
 ignore_time_scale = true
 
 [node name="player" parent="." unique_id=1452665510 instance=ExtResource("2_2c62f")]
-
-[node name="joystick" parent="." unique_id=1446823300 instance=ExtResource("3_gyfs4")]
-offset_left = -568.0
-offset_top = 8.0
-offset_right = -268.0
-offset_bottom = 308.0
-joystick_mode = 1
-visibility_mode = 0
-dynamic_range_px = 1000.0
 
 [connection signal="timeout" from="spawner/Timer" to="spawner" method="_on_timer_timeout"]
